@@ -79,12 +79,13 @@ const Contact = () => {
           ref={formRef}
           onSubmit={handleSubmit}
           className='mt-12 flex flex-col gap-8'
+          id='contactForm'
         >
           <label className='flex flex-col'>
             <span className='text-white font-medium mb-4'>Your Name</span>
             <input
               type='text'
-              name='name'
+              name='firstName'
               value={form.name}
               onChange={handleChange}
               placeholder="What's your good name?"
@@ -96,7 +97,7 @@ const Contact = () => {
             <span className='text-white font-medium mb-4'>Your email</span>
             <input
               type='email'
-              name='email'
+              name='emailAdd'
               value={form.email}
               onChange={handleChange}
               placeholder="What's your web address?"

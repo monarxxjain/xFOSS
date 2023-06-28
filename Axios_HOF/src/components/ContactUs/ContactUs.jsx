@@ -1,6 +1,7 @@
 import React from 'react';
 import "./ContactUs.css"
 import { motion } from "framer-motion";
+import { StarsCanvas } from '../../src/components';
 
 function ContactUs() {
 
@@ -45,8 +46,9 @@ function ContactUs() {
             transition={{ duration: 0.5 }}
         >
             <div className="contact_us_6">
+                <StarsCanvas/>
                 <div className="responsive-container-block container">
-                    <form className="form-box" id='contactForm' onSubmit={(e) => {
+                    {/* <form className="form-box" id='contactForm' onSubmit={(e) => {
                         submitContactform(e);
                     }}>
                         <div className="container-block form-wrapper">
@@ -81,12 +83,71 @@ function ContactUs() {
                                     <p className="text-blk input-title">
                                         WHAT DO YOU HAVE IN MIND ?
                                     </p>
-                                    <textarea required className="textinput" id="i5vyy-3" name='message' placeholder="Please enter query..."></textarea>
+                                    <textarea required className="textinput" id="i5vyy-3" name='message' placeholder="Please enter query..." style={{ backgroundColor: "white" }}></textarea>
                                 </div>
                             </div>
                             <input type='submit' name='submit' form='contactForm' className="submit-btn" id="w-c-s-bgc_p-1-dm-id-2" value='Submit'/>
                                 
                         </div>
+                    </form> */}
+                    <form
+                        onSubmit={(e) => {submitContactform(e);}}
+                        className='mt-12 flex flex-col gap-8 w-3/6 p-10 rounded-3xl'
+                        id='contactForm'
+                        style={{ backgroundColor: "#0f1729"}}
+                    >
+                        <h3 style={{fontSize: "60px", fontWeight: "1000", color:"white", letterSpacing: "2px"}}>Contact.</h3>
+                        <label className='flex flex-col'>
+                            <span className='text-white font-medium mb-4'>Your Name</span>
+                            <input
+                                required
+                                type='text'
+                                name='firstName'
+                                placeholder="What's your good name?"
+                                className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+                                style={{ backgroundColor: "rgb(65, 65, 65)" }}
+                            />
+                        </label>
+                        <label className='flex flex-col'>
+                            <span className='text-white font-medium mb-4'>Your email</span>
+                            <input
+                                required
+                                type='email'
+                                name='emailAdd'
+                                placeholder="What's your web address?"
+                                className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+                                style={{ backgroundColor: "rgb(65, 65, 65)" }}
+                            />
+                        </label>
+                        <label className='flex flex-col'>
+                            <span className='text-white font-medium mb-4'>Phone Number</span>
+                            <input
+                                required
+                                type='number'
+                                name='phno'
+                                placeholder="What's your web address?"
+                                className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+                                style={{ backgroundColor: "rgb(65, 65, 65)" }}
+                            />
+                        </label>
+                        <label className='flex flex-col'>
+                            <span className='text-white font-medium mb-4'>Your Message</span>
+                            <textarea
+                                rows={7}
+                                name='message'
+                                placeholder='What you want to say?'
+                                className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+                                style={{ backgroundColor: "rgb(65, 65, 65)" }}
+                            />
+                        </label>
+
+                        <input
+                            type='submit'
+                            className='bg-tertiary py-3 px-8 rounded-xl outline-none w-fit active:scale-95 text-white active:border font-bold shadow-md shadow-primary'
+                            style={{ backgroundColor: "rgb(65, 65, 65)" }}
+                            form='contactForm'
+                        >
+                        </input>
                     </form>
                     <div className="responsive-cell-block wk-desk-7 pl-40 wk-ipadp-12 wk-tab-12 wk-mobile-12" id="i772w">
                         <div className="map-part">

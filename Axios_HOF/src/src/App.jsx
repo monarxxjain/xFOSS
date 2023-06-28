@@ -18,6 +18,9 @@ const HomeApp = () => {
         <div className='relative z-0'>
           <Contact />
           <StarsCanvas />
+          <br /><br />
+        <br /><br /> <br /><br />
+
           <footer className='aboutUsFooter '>
             <div className="container w-8/12">
 
@@ -179,6 +182,7 @@ const HomeApp = () => {
 
             </div>
           </footer>
+        <br /><br />
         </div>
       </div>
   );
