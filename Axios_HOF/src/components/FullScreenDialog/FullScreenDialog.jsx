@@ -139,7 +139,7 @@ export default function FullScreenDialog() {
             <TextField
               label="Enter Github UserName"
               onChange={(e) => {
-                setcodeforcesusername(e.target.value);
+                setgithubownername(e.target.value);
               }}
               variant="outlined"
             />
