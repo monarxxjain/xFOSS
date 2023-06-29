@@ -62,15 +62,19 @@ import HomeApp from "./src/App";
 
 const App = () => {
   const [theme, colorMode] = useMode();
-  const [checker,setChecker] = useState(0)
+  const data = localStorage.getItem("loginMode");
+  const [checker,setChecker] = useState(data)
+  console.log(data);
   function handleCheckerIncrement(){
-    setChecker(1);
+    setChecker(data);
   }
   // const [isSidebar, setIsSidebar]=useState(true);
   // useEffect(()=>{
   //   Displayer(); 
   //   gitDisplayer(); 
-
+  
+  // const loginModeFinal = JSON.parse(data);
+  // const userName = dashboardNameFinal.dashboardName;
   // },[])
   return (
     <>
@@ -137,7 +141,7 @@ const App = () => {
                 <Sidebar />
                 <main className="dashboard--content" >
                   <Topbar />
-                  {checker == 1 ? <StudentApp/> : <AppDev />}
+                  {data == 1 ? <StudentApp/> : <AppDev />}
                 </main>
               </div>
             </ThemeProvider>
@@ -149,7 +153,7 @@ const App = () => {
                 <Sidebar />
                 <main className="dashboard--content" >
                   <Topbar />
-                  {checker == 1 ? <StudentWebDev /> : <WebDev />}
+                  {data == 1 ? <StudentWebDev /> : <WebDev />}
                 </main>
               </div>
             </ThemeProvider>
@@ -161,7 +165,7 @@ const App = () => {
                 <Sidebar />
                 <main className="dashboard--content" >
                   <Topbar />
-                  {checker == 1 ? <StudentML /> : <Ml />}
+                  {data == 1 ? <StudentML /> : <Ml />}
                 </main>
               </div>
             </ThemeProvider>
@@ -173,7 +177,7 @@ const App = () => {
                 <Sidebar />
                 <main className="dashboard--content" >
                   <Topbar />
-                  {checker == 1 ? <StudentFoss /> : <Foss />}
+                  {data == 1 ? <StudentFoss /> : <Foss />}
                 </main>
               </div>
             </ThemeProvider>
@@ -185,7 +189,7 @@ const App = () => {
                 <Sidebar />
                 <main className="dashboard--content" >
                   <Topbar />
-                  {checker == 1 ? <StudentDesign /> : <Design />}
+                  {data == 1 ? <StudentDesign /> : <Design />}
                 </main>
               </div>
             </ThemeProvider>
@@ -197,7 +201,7 @@ const App = () => {
                 <Sidebar />
                 <main className="dashboard--content" >
                   <Topbar />
-                  {checker == 1 ? <StudentInfosec /> : <InfoSec />}
+                  {data == 1 ? <StudentInfosec /> : <InfoSec />}
                 </main>
               </div>
             </ThemeProvider>
@@ -209,7 +213,7 @@ const App = () => {
                 <Sidebar />
                 <main className="dashboard--content" >
                   <Topbar />
-                  {checker == 1 ? <StudentBlockchain /> : <Blockchain />}
+                  {data == 1 ? <StudentBlockchain /> : <Blockchain />}
                 </main>
               </div>
             </ThemeProvider>
@@ -234,7 +238,7 @@ const App = () => {
                 <main className="dashboard--content" >
                   <Topbar />
                   <div style={{ overflowY: "auto" }}>
-                    {checker == 1 ? <StudentFAQ /> : <FAQ />}
+                    {data == 1 ? <StudentFAQ /> : <FAQ />}
                   </div>
                 </main>
               </div>
@@ -247,7 +251,7 @@ const App = () => {
                 <Sidebar />
                 <main className="dashboard--content" >
                   <Topbar />
-                  {checker==1 ? <StudentCalendar/> : <Calendare/>}
+                  {data==1 ? <StudentCalendar/> : <Calendare/>}
                 </main>
               </div>
             </ThemeProvider>

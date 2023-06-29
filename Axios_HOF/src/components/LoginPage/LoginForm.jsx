@@ -189,8 +189,10 @@ export default function LoginForm({checker , increment}) {
                 const userData={
                     dashboardName: userName
                 }
+               
                 console.log(checkerMj);
                 localStorage.setItem("userData", JSON.stringify(userData));
+                localStorage.setItem("loginMode", 1);
                 checkerMj++;
                 increment();
                 console.log(checkerMj);
@@ -213,7 +215,8 @@ export default function LoginForm({checker , increment}) {
                             }
                             localStorage.setItem("userData", JSON.stringify(adminData));
                             document.getElementById('jugaad2').click();   
-                           
+                            localStorage.setItem("loginMode", 2);
+
                         }
                         else{
                             alert("User do not exist");
