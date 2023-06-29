@@ -16,12 +16,21 @@ import { motion } from "framer-motion";
 import FullScreenDialog from "../FullScreenDialog/FullScreenDialog";
 import bcrypt from "bcryptjs-react"
 // import { GoogleAuthProvider } from "firebase/auth";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 let checkerMj = 0;
-
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 export default function LoginForm({checker , increment}) {
     const [userid, setuserid] = useState("");
+    const [snackOpen, setSnackOpen] = React.useState(false);
+    const handleSnackClose = (event, reason) => {
+        
 
+        setSnackOpen(false);
+    };
     const google_login = () => {
         const provider = new GoogleAuthProvider();
         const auth = getAuth();
@@ -63,12 +72,12 @@ export default function LoginForm({checker , increment}) {
 
 
     const submitform = async (e) => {
+        e.preventDefault();
         if (
             submitStudentName === false ||
             submitStudentEmail === false ||
             submitStudentPass === false
             ) {
-                e.preventDefault();
             console.log("Invalid Info");
         } else {
             let form = e.currentTarget;
@@ -91,7 +100,10 @@ export default function LoginForm({checker , increment}) {
                 .then(()=>{
                     console.log("New Student Added")
                 })
-                
+                setSnackOpen(true);
+                setTimeout(() => {
+                    window.location.reload();
+                }, 500);
 
             } 
             catch (error) {
@@ -101,6 +113,7 @@ export default function LoginForm({checker , increment}) {
         }
     };
     const submitAdminform = async (e) => {
+        e.preventDefault()
             let adform = e.currentTarget;
 
             let url = adform.action;
@@ -149,6 +162,10 @@ export default function LoginForm({checker , increment}) {
                     .then(()=>{
                         console.log("New Admin Added")
                     })
+                    setSnackOpen(true);
+                setTimeout(() => {
+                    window.location.reload();
+                }, 500);
                 }
 
 
@@ -366,6 +383,9 @@ export default function LoginForm({checker , increment}) {
 
     };
 
+
+    const horizontal = "center";
+    const vertical = "bottom";
     return (
         <motion.div
             initial={{ opacity: 0, x: "1000px", y: "-470px" }}
@@ -704,6 +724,11 @@ export default function LoginForm({checker , increment}) {
                     </div>
                 </div>
             </div>
+            <Snackbar open={snackOpen} autoHideDuration={6000} onClose={handleSnackClose} anchorOrigin={{vertical, horizontal}}>
+                <Alert onClose={handleSnackClose} severity="success" sx={{ width: '100%' }}>
+                    Form Submitted Successfully!
+                </Alert>
+            </Snackbar>
         </motion.div>
     );
 }
