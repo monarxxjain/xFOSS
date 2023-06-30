@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -30,6 +31,7 @@ import com.hello.hewwbf.Model.InfoData;
 import com.hello.hewwbf.Model.InfoScoreData;
 import com.hello.hewwbf.Model.UserData;
 import com.hello.hewwbf.Service.UserServiceImpl;
+import com.hello.hewwbf.entity.Alumni;
 
 @Controller
 @CrossOrigin
@@ -287,10 +289,25 @@ public class Mycontroller {
     
 // ! <================================DashBoard End=========================================>
 
+    @ResponseBody
+    @PostMapping("/post/alumni")
+    public void postAlumni(@RequestBody Alumni alumni){
+        // System.out.println(alumni);
+        this.userServiceImpl.uploadAlumni(alumni);
+    }
+    @ResponseBody
+    @GetMapping("/get/alumni")
+    public List<Alumni> getAlumniData(){
+        // System.out.println(alumni);
+        return this.userServiceImpl.getAlumni();
+    }
+
+
     // @ResponseBody
-    // @PostMapping("/post/alumni")
-    // public void postAlumni(@RequestBody AlumniData alumniData){
-    //     this.userServiceImpl.postAlumniForm(alumniData);
+    // @PostMapping("/post/alumniImage")
+    // public void postAlumniImage(@RequestParam("alumniPic")MultipartFile file)throws IOException{
+
+    //     this.userServiceImpl.uploadImage(file);
     // }
     // @ResponseBody
     // @GetMapping("/get/alumni")

@@ -11,10 +11,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.hello.hewwbf.Database.AdminDatabase;
 import com.hello.hewwbf.Database.AlumniDatabase;
+import com.hello.hewwbf.Database.AlumniEntityDatabase;
 import com.hello.hewwbf.Database.CalendarDatabase;
 import com.hello.hewwbf.Database.ContactUsDatabase;
 import com.hello.hewwbf.Database.Database;
 import com.hello.hewwbf.Database.FAQDatabase;
+import com.hello.hewwbf.Database.ImagaEntityDatabase;
 import com.hello.hewwbf.Database.InfoDatabase;
 import com.hello.hewwbf.Model.AdminData;
 import com.hello.hewwbf.Model.AlumniData;
@@ -24,6 +26,8 @@ import com.hello.hewwbf.Model.FAQData;
 import com.hello.hewwbf.Model.InfoData;
 import com.hello.hewwbf.Model.InfoScoreData;
 import com.hello.hewwbf.Model.UserData;
+import com.hello.hewwbf.entity.Alumni;
+import com.hello.hewwbf.entity.Image;
 import com.hello.hewwbf.util.ImageUtils;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -53,7 +57,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private FAQDatabase faqBase;
 
+    @Autowired
+    private ImagaEntityDatabase imgBase;
 
+    @Autowired
+    private AlumniEntityDatabase alumniBase;
 
 
     // !! ----------------------------------- User Form Start -------------------------------------- !!\\
@@ -424,4 +432,33 @@ public class UserServiceImpl implements UserService {
     }
 //!! ----------------------------------- FAQ End-------------------------------------- !!\\
     
+
+
+
+
+    public void uploadAlumni(Alumni image){
+        // this.alumniBase.save(Alumni.builder()
+        // .alumniName(image.getAlumniName())
+        // .alumniEmail(image.getAlumniEmail())
+        // .alumniGradYear(image.getAlumniGradYear())
+        // .alumniPosition(image.getAlumniPosition())
+        // .alumniAch(image.getAlumniAch())
+        // .alumniPic(ImageUtils.compressImage(image.getAlumniPic()))
+        // .build()
+        // );
+
+        this.alumniBase.save(image);
+    }
+
+    public List<Alumni> getAlumni(){
+        return this.alumniBase.getAll();
+    }
+
+    public void uploadImage(MultipartFile image)throws IOException{
+        this.imgBase.save(Image.builder()
+        .imgarr(ImageUtils.compressImage(image.getBytes()))
+        .build()
+        );
+    }
+
 }

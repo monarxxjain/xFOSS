@@ -89,7 +89,7 @@ export default function LoginForm({checker , increment}) {
                 const hashedPass = bcrypt.hashSync(formDataObject.password, 10);
                 // console.log(hashedPass)
                 formDataObject.password= hashedPass;
-                
+                let ak = "4etw";
                 console.log(formDataObject);
                 
                 fetch("http://localhost:8080/post/form",{

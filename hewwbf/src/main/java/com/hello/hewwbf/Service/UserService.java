@@ -14,6 +14,8 @@ import com.hello.hewwbf.Model.FAQData;
 import com.hello.hewwbf.Model.InfoData;
 import com.hello.hewwbf.Model.InfoScoreData;
 import com.hello.hewwbf.Model.UserData;
+import com.hello.hewwbf.entity.Alumni;
+import com.hello.hewwbf.entity.Image;
 
 
 public interface UserService {
@@ -74,5 +76,12 @@ public interface UserService {
     public void postFaqData(FAQData faqData);
 
     public List<FAQData> getAllFaqs();
+
+    public void uploadAlumni(Alumni image);
+
+    public void uploadImage(MultipartFile image) throws IOException;
+
+    public List<Alumni> getAlumni();
+
 
 }

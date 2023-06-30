@@ -10,13 +10,7 @@ const FeedbackCard = ({ graduationYear, ach, achievements, name, title, img }) =
       {ach}
     </p>
     <p className="font-poppins font-normal text-[16px] leading-[32.4px] text-white mb-10 mx-2">
-      {achievements.map((x,i)=>{
-        return(
-          <>
-            <li key={i}>{x}</li>
-          </>
-        )
-      })}
+      {achievements}
     </p>
     
 

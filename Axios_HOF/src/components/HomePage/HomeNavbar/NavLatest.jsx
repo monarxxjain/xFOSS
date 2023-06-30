@@ -12,7 +12,8 @@ const NavLatest = () => {
         setActive(!isActive);
         setAct(!isAct);
     };
- 
+    let data = localStorage.getItem("loginMode");
+
   return (
     <div className={isAct ? "nav-active" : ""}>
           <header className="header aboutNav" data-header>
@@ -117,7 +118,8 @@ const NavLatest = () => {
 
                   </nav>
 
-                  <Link to={'/login_signup'} className="btn btn-primary" style={{ fontSize: "17px" }}>Login / Sign Up</Link>
+                  <Link to={'/login_signup'} className="btn btn-primary" style={{ fontSize: "17px", display: (data == 1 || data ==2 ) ? "none" : "block" }}>Login / Sign Up</Link>
+                  <Link to={'/dashboard'} className="btn btn-primary" style={{ fontSize: "17px", display: (data == 1 || data ==2 ) ? "block" : "none" }}>Dashboard</Link>
 
                   <button className="nav-open-btn" aria-label="open menu" onClick={ToggleClass} data-nav-toggler>
                       <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
