@@ -62,10 +62,11 @@ import HomeApp from "./src/App";
 
 const App = () => {
   const [theme, colorMode] = useMode();
-  const data = localStorage.getItem("loginMode");
+  let data = localStorage.getItem("loginMode");
   const [checker,setChecker] = useState(data)
   console.log(data);
   function handleCheckerIncrement(){
+    let data = localStorage.getItem("loginMode");
     setChecker(data);
   }
   // const [isSidebar, setIsSidebar]=useState(true);
