@@ -1,3 +1,4 @@
+import { AppD, Blockchain, Design, Foss, Infosec, Ml, WebD } from "../../assets";
 import {
   mobile,
   backend,
@@ -23,6 +24,8 @@ import {
   jobit,
   tripguide,
   threejs,
+  Cp
+  
 } from "../assets";
 
 export const navLinks = [
@@ -42,19 +45,19 @@ export const navLinks = [
 
 const services = [
   {
-    title: "Web Developer",
+    title: "Placement Powerhouse",
     icon: web,
   },
   {
-    title: "React Native Developer",
+    title: "1st among newly established IIIT's",
     icon: mobile,
   },
   {
-    title: "Backend Developer",
+    title: "50 acre campus",
     icon: backend,
   },
   {
-    title: "Content Creator",
+    title: "Technical Expertise",
     icon: creator,
   },
 ];
@@ -172,63 +175,63 @@ const experiences = [
 const testimonials = [
   {
     testimonial:
-      "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
-    name: "Sara Lee",
-    designation: "CFO",
-    company: "Acme Co",
+       "An institue slowly growing to become the hub of tech exellence along with inculcating cultural and euntrepreneurial values, on its way to become a Tier-1 institue.",
+    name: "Dr. Arun Mohan Sherry",
+    designation: "Director",
+    company: "IIIT Lucknow",
     image: "https://randomuser.me/api/portraits/women/4.jpg",
   },
   {
     testimonial:
-      "I've never met a web developer who truly cares about their clients' success like Rick does.",
-    name: "Chris Brown",
-    designation: "COO",
-    company: "DEF Corp",
+    "The students of IIIT Lucknow emerge as well rounded individuals,with technical skillset along with communicational prowess and healthy statures.",
+    name: "Dr. Dhananjoy Dey ",
+    designation: "Dean(Academic)",
+    company: "IIIT Lucknow",
     image: "https://randomuser.me/api/portraits/men/5.jpg",
   },
   {
     testimonial:
-      "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
-    name: "Lisa Wang",
-    designation: "CTO",
-    company: "456 Enterprises",
+      "Keeping in mind that the first batch passed out in 2k19, the highest C.T.C being 28 Lakhs, surpasses other newly established IIITs and is exponentially increasing the bar!!",
+    name: "Dr. Vishal Krishna Singh",
+    designation: "Faculty In-Charge(Placements)",
+    company: "IIIT Lucknow",
     image: "https://randomuser.me/api/portraits/women/6.jpg",
   },
 ];
 
 const projects = [
   {
-    name: "Car Rent",
+    name: "Competitve Programming",
     description:
-      "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+    "Students may hone their coding abilities and get ready for competitive programming competitions by attending seminars and training sessions led by IIIT Lucknow's CP (Competitive Programming) branch.",
     tags: [
       {
-        name: "react",
+        name: "cses",
         color: "blue-text-gradient",
       },
       {
-        name: "mongodb",
+        name: "STL",
         color: "green-text-gradient",
       },
       {
-        name: "tailwind",
+        name: "logic",
         color: "pink-text-gradient",
       },
     ],
-    image: carrent,
+    image: Cp,
     source_code_link: "https://github.com/",
   },
   {
-    name: "Job IT",
+    name: "Web Dev",
     description:
-      "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
+      "The WebD wing conducts training sessions to help students improve their skills in areas such as HTML, CSS, JavaScript, and web frameworks like React, Angular, and Vue",
     tags: [
       {
         name: "react",
         color: "blue-text-gradient",
       },
       {
-        name: "restapi",
+        name: "JS",
         color: "green-text-gradient",
       },
       {
@@ -236,13 +239,55 @@ const projects = [
         color: "pink-text-gradient",
       },
     ],
-    image: jobit,
+    image: WebD,
     source_code_link: "https://github.com/",
   },
   {
-    name: "Trip Guide",
+    name: "ML",
     description:
-      "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
+      "The AI-ML wing holds training sessions to assist students in honing their abilities in data analysis, data preprocessing, machine learning algorithms, and deep learning.",
+    tags: [
+      {
+        name: "CV",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "NLP",
+        color: "green-text-gradient",
+      },
+      {
+        name: "AI",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: Ml,
+    source_code_link: "https://github.com/",
+  },
+  {
+    name: "FOSS",
+    description:
+      "The FOSS (Free and Open Source Software) wing hones student in Collaborative working and contributing to projects on Github .",
+    tags: [
+      {
+        name: "git",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "repo",
+        color: "green-text-gradient",
+      },
+      {
+        name: "fork",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: Foss,
+    source_code_link: "https://github.com/",
+  },
+  {
+    name: "App Dev",
+    description:
+      "It teaches students iOS app development, Android app development, cross-platform app development, and app design. The workshops cover topics such as app development fundamentals, app architecture, and app testing.",
     tags: [
       {
         name: "nextjs",
@@ -254,6 +299,90 @@ const projects = [
       },
       {
         name: "css",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: AppD,
+    source_code_link: "https://github.com/",
+  },
+  {
+    name: "Infosec",
+    description:
+      "It imparts skills in areas such as network security, web application security, cryptography, and ethical hacking. The workshops cover topics such as cyber threats, cyber attacks, and countermeasures.",
+    tags: [
+      {
+        name: "CTF",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "Linux",
+        color: "green-text-gradient",
+      },
+      {
+        name: "python",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: Infosec,
+    source_code_link: "https://github.com/",
+  },
+  {
+    name: "Design",
+    description:
+      "It helps students improve their skills in areas such as design principles, typography, colour theory, and design tools such as Adobe Photoshop, Illustrator, Canva and Sketch.",
+    tags: [
+      {
+        name: "canva",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "visual",
+        color: "green-text-gradient",
+      },
+      {
+        name: "css",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: Design,
+    source_code_link: "https://github.com/",
+  },
+  {
+    name: "Blockchain",
+    description:
+      "The Blockchain wing provides training sessions and events to help students learn about blockchain technology and showcase their skills.",
+    tags: [
+      {
+        name: "Etherium",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "solidity",
+        color: "green-text-gradient",
+      },
+      {
+        name: "bitcoin",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: Blockchain,
+    source_code_link: "https://github.com/",
+  },
+  {
+    name: "E-cell",
+    description:
+      "stinations.",
+    tags: [
+      {
+        name: "finance",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "enspire",
+        color: "green-text-gradient",
+      },
+      {
+        name: "incubation",
         color: "pink-text-gradient",
       },
     ],

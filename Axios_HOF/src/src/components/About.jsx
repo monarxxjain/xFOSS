@@ -47,11 +47,12 @@ const About = () => {
         variants={fadeIn("", "", 0.1, 1)}
         className='mt-4  text-[17px] max-w-3xl leading-[30px]'
       >
-        I'm a skilled software developer with experience in TypeScript and
-        JavaScript, and expertise in frameworks like React, Node.js, and
-        Three.js. I'm a quick learner and collaborate closely with clients to
-        create efficient, scalable, and user-friendly solutions that solve
-        real-world problems. Let's work together to bring your ideas to life!
+        Welcome to the Indian Institute of Information Technology, Lucknow, an institute of national importance. IIITs have a tradition of producing best-in-class human resources in multi-dimensional aspects of Engineering and Management. IIIT Lucknow is an emerging institute that takes this initiative further in leaps and bounds by providing world-class education in Engineering, Technology, and Business. We have a team of best educators and industrialists who teach contemporary topics and bring real-life scenarios to the classroom. With this kind of training, our students enter the real world with full awareness and become adept in problem-solving.
+
+Graduating from a college is like a venture where students invest their efforts and dreams in anticipation of a life-transforming future. It is, therefore, essential that they choose the right career path. While you consider various courses that we offer, our support team will help you make an optimal choice to achieve your goals.  Apart from the on-campus BTech., MTech. and PhD programmes, we are launching six off-campus programmes in IT and allied areas in August 2020. Besides dedicated teaching, we also promote quality research and life-long learning.
+
+
+
       </motion.p>
 
       <div className='mt-20 flex flex-wrap gap-10'>
