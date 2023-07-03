@@ -39,19 +39,27 @@ const About = () => {
   return (
     <>
       <motion.div variants={textVariant()}>
-        <p className={styles.sectionSubText} style={{fontSize: "24px", opacity: 0.7}}>Introduction</p>
-        <h2 className={styles.sectionHeadText} style={{textAlign: "left"}}>Overview.</h2>
+        <p className={styles.sectionSubText} style={{fontSize: "24px", opacity: 0.7}}>Be Updated with Brute Force at</p>
+        <h2 className={styles.sectionHeadText} style={{textAlign: "left"}}>Indian Institute Of Information Technology, Lucknow</h2>
       </motion.div>
 
       <motion.p
         variants={fadeIn("", "", 0.1, 1)}
         className='mt-4  text-[17px] max-w-3xl leading-[30px]'
       >
-        I'm a skilled software developer with experience in TypeScript and
-        JavaScript, and expertise in frameworks like React, Node.js, and
-        Three.js. I'm a quick learner and collaborate closely with clients to
-        create efficient, scalable, and user-friendly solutions that solve
-        real-world problems. Let's work together to bring your ideas to life!
+        Welcome to the Indian Institute of Information Technology, Lucknow, an institute of national importance. It has a tradition of producing best-in-class human resources in multi-dimensional aspects of Engineering and Management. IIIT Lucknow is an emerging institute that takes this initiative further in leaps and bounds by providing world-class education in Engineering, Technology, and Business. <br></br>
+        <br></br>
+        With Brute Force, students Of IIITL can track their daily schedule as well as be up to date with their skillset amidst their peers. With a real time leaderboard connecting their various coding and developing handles, we have created a system to help student see their stadings and therefore inculcate a healthy competition and gradual growth. Alongside, we provide regular updates about college events. Providing features such as routine scheduler, user support, skill tracking, doubt assistance and news updates, we are commited to provide the students a
+        resourceful platform, helping in their coding journey, in collaboration with IIIT Lucknow.
+        
+        
+        
+       
+
+
+
+
+
       </motion.p>
 
       <div className='mt-20 flex flex-wrap gap-10'>
