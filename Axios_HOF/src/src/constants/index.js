@@ -24,7 +24,9 @@ import {
   jobit,
   tripguide,
   threejs,
-  Cp
+  Cp,
+  Dean,Direct,
+  Ecell,Fcup,FossLog,Kaggle,VKS, Hof
   
 } from "../assets";
 
@@ -45,19 +47,19 @@ export const navLinks = [
 
 const services = [
   {
-    title: "Placement Powerhouse",
+    title: "Keeping Track",
     icon: web,
   },
   {
-    title: "1st among newly established IIIT's",
+    title: "Class Scheduling",
     icon: mobile,
   },
   {
-    title: "50 acre campus",
+    title: "Provides Assistance",
     icon: backend,
   },
   {
-    title: "Technical Expertise",
+    title: "College Updates",
     icon: creator,
   },
 ];
@@ -119,55 +121,58 @@ const technologies = [
 
 const experiences = [
   {
-    title: "React.js Developer",
-    company_name: "Starbucks",
-    icon: starbucks,
+    title: "Hack-o-Fiesta",
+    company_name:"Hackathon",
+    icon: Hof,
     iconBg: "#383E56",
-    date: "March 2020 - April 2021",
+    date: "August 2023",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "The annual hackathon hosted by IIIT Lucknow, back with its fourth edition",
+      "Individuals participate in teams of 5 or less,developing a web app fostering creativity and innovation with unique project ideas.",
+      "Lasting 36 hours, with food supplies and refreshments",
+      "Prizes worth 10,00,000 rupees", 
     ],
   },
   {
-    title: "React Native Developer",
-    company_name: "Tesla",
-    icon: tesla,
+    title: "Fresher's Cup",
+    company_name: "Competitive Coding",
+    icon: Fcup,
     iconBg: "#E6DEDD",
-    date: "Jan 2021 - Feb 2022",
+    date: "August 2023",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "A team-based (of 1-3 members), ICPC style programming contest conducted specially for the freshers of IIIT Lucknow in which they go head to head with the coding enthusiasts of their batch.",
+      "The contest will be held in two rounds, the first one being online qualifications. From here, only the top sharpest teams get to the finals.",
+     "Prizes worth 5,000 rupees",      
     ],
   },
   {
-    title: "Web Developer",
-    company_name: "Shopify",
-    icon: shopify,
+    title: "FOSS Weekend",
+    company_name: "Open-Source",
+    icon: FossLog,
     iconBg: "#383E56",
-    date: "Jan 2022 - Jan 2023",
+    date: "October 2023",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "A rank based fun competition to awake the open-sourceror in you",
+      "Lasting 2 days, with options to Choose from a wide range of projects in Git, Web Development, App Development, ML, and Scripting.",
+     "Tackle issues with ease using the difficulty-level labels.",
+     "Climb to the top of the leaderboard and win some amazing prizes! ",
+
+
+      
     ],
   },
   {
-    title: "Full stack Developer",
-    company_name: "Meta",
-    icon: meta,
+    title: "Kaggle Week",
+    company_name: "Data Science",
+    icon: Kaggle,
     iconBg: "#E6DEDD",
-    date: "Jan 2023 - Present",
+    date: "November 2023",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+       "A challenge requiring participants to solve a real-world problem using data science techniques,",
+       "Open for all, the aim is to get the highest accuracy in training and predicting results by the model",
+       "Prize pool worth Rs10,000 for the top performers.",
+
+
     ],
   },
 ];
@@ -175,27 +180,27 @@ const experiences = [
 const testimonials = [
   {
     testimonial:
-       "An institue slowly growing to become the hub of tech exellence along with inculcating cultural and euntrepreneurial values, on its way to become a Tier-1 institue.",
+       "An institute slowly growing to become the hub of tech exellence, inculcating cultural and euntrepreneurial values, on its way to become a Tier-1 institue.",
     name: "Dr. Arun Mohan Sherry",
     designation: "Director",
     company: "IIIT Lucknow",
-    image: "https://randomuser.me/api/portraits/women/4.jpg",
+    image: Direct,
   },
   {
     testimonial:
-    "The students of IIIT Lucknow emerge as well rounded individuals,with technical skillset along with communicational prowess and healthy statures.",
+    "The students of IIITL emerge as well rounded individuals,with technical skillset, communicational prowess and agile minds.",
     name: "Dr. Dhananjoy Dey ",
     designation: "Dean(Academic)",
     company: "IIIT Lucknow",
-    image: "https://randomuser.me/api/portraits/men/5.jpg",
+    image: Dean,
   },
   {
     testimonial:
-      "Keeping in mind that the first batch passed out in 2k19, the highest C.T.C being 28 Lakhs, surpasses other newly established IIITs and is exponentially increasing the bar!!",
+      "Keeping in mind that the first batch achieved the highest C.T.C being 28 Lakhs, surpasses other newly established IIITs and is exponentially increasing the bar!!",
     name: "Dr. Vishal Krishna Singh",
     designation: "Faculty In-Charge(Placements)",
     company: "IIIT Lucknow",
-    image: "https://randomuser.me/api/portraits/women/6.jpg",
+    image: VKS,
   },
 ];
 
@@ -203,7 +208,7 @@ const projects = [
   {
     name: "Competitve Programming",
     description:
-    "Students may hone their coding abilities and get ready for competitive programming competitions by attending seminars and training sessions led by IIIT Lucknow's CP (Competitive Programming) branch.",
+    "Students may hone their coding abilities and get ready for competitive programming competitions by attending seminars and training sessions held.",
     tags: [
       {
         name: "cses",
@@ -222,9 +227,9 @@ const projects = [
     source_code_link: "https://github.com/",
   },
   {
-    name: "Web Dev",
+    name: "Web Development",
     description:
-      "The WebD wing conducts training sessions to help students improve their skills in areas such as HTML, CSS, JavaScript, and web frameworks like React, Angular, and Vue",
+      "The Web Development wing conducts training sessions to help students improve their skills in areas such as HTML, CSS, JavaScript, and web frameworks like React, Angular, and Vue",
     tags: [
       {
         name: "react",
@@ -243,9 +248,9 @@ const projects = [
     source_code_link: "https://github.com/",
   },
   {
-    name: "ML",
+    name: "Machine Learning",
     description:
-      "The AI-ML wing holds training sessions to assist students in honing their abilities in data analysis, data preprocessing, machine learning algorithms, and deep learning.",
+      "The AI-ML wing holds training sessions to assist students in honing their abilities in data analysis, data preprocessing, machine learning algorithms, and deep learning as well as deployment.",
     tags: [
       {
         name: "CV",
@@ -264,9 +269,9 @@ const projects = [
     source_code_link: "https://github.com/",
   },
   {
-    name: "FOSS",
+    name: "Free and Open Source Software",
     description:
-      "The FOSS (Free and Open Source Software) wing hones student in Collaborative working and contributing to projects on Github .",
+      "The FOSS wing hones student in Collaborative working and contributing to projects on Github . It provides insights into open source techniques and contests.",
     tags: [
       {
         name: "git",
@@ -285,9 +290,9 @@ const projects = [
     source_code_link: "https://github.com/",
   },
   {
-    name: "App Dev",
+    name: "App Development",
     description:
-      "It teaches students iOS app development, Android app development, cross-platform app development, and app design. The workshops cover topics such as app development fundamentals, app architecture, and app testing.",
+      "It teaches students iOS app development, Android app development, cross-platform app development, and app design. The workshops cover topics such as app development fundamentals, and app testing.",
     tags: [
       {
         name: "nextjs",
@@ -306,7 +311,7 @@ const projects = [
     source_code_link: "https://github.com/",
   },
   {
-    name: "Infosec",
+    name: "Information Security",
     description:
       "It imparts skills in areas such as network security, web application security, cryptography, and ethical hacking. The workshops cover topics such as cyber threats, cyber attacks, and countermeasures.",
     tags: [
@@ -327,7 +332,7 @@ const projects = [
     source_code_link: "https://github.com/",
   },
   {
-    name: "Design",
+    name: "Design and UI",
     description:
       "It helps students improve their skills in areas such as design principles, typography, colour theory, and design tools such as Adobe Photoshop, Illustrator, Canva and Sketch.",
     tags: [
@@ -348,7 +353,7 @@ const projects = [
     source_code_link: "https://github.com/",
   },
   {
-    name: "Blockchain",
+    name: "Blockchain Technology",
     description:
       "The Blockchain wing provides training sessions and events to help students learn about blockchain technology and showcase their skills.",
     tags: [
@@ -371,7 +376,7 @@ const projects = [
   {
     name: "E-cell",
     description:
-      "stinations.",
+      "A student-run organization empowering students to become entrepreneurs and turn their ideas into reality,.It offers speaker sessions, startup contests, and funding. ",
     tags: [
       {
         name: "finance",
@@ -386,7 +391,7 @@ const projects = [
         color: "pink-text-gradient",
       },
     ],
-    image: tripguide,
+    image: Ecell,
     source_code_link: "https://github.com/",
   },
 ];

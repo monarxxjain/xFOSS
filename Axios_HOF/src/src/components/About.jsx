@@ -39,17 +39,24 @@ const About = () => {
   return (
     <>
       <motion.div variants={textVariant()}>
-        <p className={styles.sectionSubText} style={{fontSize: "24px", opacity: 0.7}}>Introduction</p>
-        <h2 className={styles.sectionHeadText} style={{textAlign: "left"}}>Overview.</h2>
+        <p className={styles.sectionSubText} style={{fontSize: "24px", opacity: 0.7}}>Be Updated with Brute Force at</p>
+        <h2 className={styles.sectionHeadText} style={{textAlign: "left"}}>Indian Institute Of Information Technology, Lucknow</h2>
       </motion.div>
 
       <motion.p
         variants={fadeIn("", "", 0.1, 1)}
         className='mt-4  text-[17px] max-w-3xl leading-[30px]'
       >
-        Welcome to the Indian Institute of Information Technology, Lucknow, an institute of national importance. IIITs have a tradition of producing best-in-class human resources in multi-dimensional aspects of Engineering and Management. IIIT Lucknow is an emerging institute that takes this initiative further in leaps and bounds by providing world-class education in Engineering, Technology, and Business. We have a team of best educators and industrialists who teach contemporary topics and bring real-life scenarios to the classroom. With this kind of training, our students enter the real world with full awareness and become adept in problem-solving.
+        Welcome to the Indian Institute of Information Technology, Lucknow, an institute of national importance. It has a tradition of producing best-in-class human resources in multi-dimensional aspects of Engineering and Management. IIIT Lucknow is an emerging institute that takes this initiative further in leaps and bounds by providing world-class education in Engineering, Technology, and Business. <br></br>
+        <br></br>
+        With Brute Force, students Of IIITL can track their daily schedule as well as be up to date with their skillset amidst their peers. With a real time leaderboard connecting their various coding and developing handles, we have created a system to help student see their stadings and therefore inculcate a healthy competition and gradual growth. Alongside, we provide regular updates about college events. Providing features such as routine scheduler, user support, skill tracking, doubt assistance and news updates, we are commited to provide the students a
+        resourceful platform, helping in their coding journey, in collaboration with IIIT Lucknow.
+        
+        
+        
+       
 
-Graduating from a college is like a venture where students invest their efforts and dreams in anticipation of a life-transforming future. It is, therefore, essential that they choose the right career path. While you consider various courses that we offer, our support team will help you make an optimal choice to achieve your goals.  Apart from the on-campus BTech., MTech. and PhD programmes, we are launching six off-campus programmes in IT and allied areas in August 2020. Besides dedicated teaching, we also promote quality research and life-long learning.
+
 
 
 

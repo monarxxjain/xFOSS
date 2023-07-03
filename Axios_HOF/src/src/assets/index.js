@@ -30,6 +30,14 @@ import carrent from "./carrent.png";
 import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
 import Cp from "./Cp.jpg"
+import Dean from "./dean.jpg"
+import Direct from "./director.jpeg"
+import Ecell from "./ecell.png"
+import FossLog from "./fosslog.png"
+import Fcup from "./freshercup.png"
+import Hof from "./hof.png"
+import Kaggle from "./kaggle.png"
+import VKS from "./vks.jpg"
 export {
   logo,
   backend,
@@ -60,4 +68,6 @@ export {
   jobit,
   tripguide,
   Cp,
+  Dean,
+  Direct,Ecell,FossLog,Fcup,Hof,Kaggle,VKS,
 };
