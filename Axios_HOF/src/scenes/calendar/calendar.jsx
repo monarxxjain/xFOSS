@@ -48,6 +48,7 @@ const Calendare = () => {
     })
       .then(() => {
         console.log("Class Scheduled")
+        
       })
     }
     catch(err){

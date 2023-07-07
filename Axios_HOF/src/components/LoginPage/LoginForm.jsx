@@ -86,9 +86,9 @@ export default function LoginForm({checker , increment}) {
                 let formFields = new FormData(form);
                 let formDataObject = Object.fromEntries(formFields.entries());
 
-                const hashedPass = bcrypt.hashSync(formDataObject.password, 10);
+                const hashedPass = bcrypt.hashSync(formDataObject.userPassword, 10);
                 // console.log(hashedPass)
-                formDataObject.password= hashedPass;
+                formDataObject.userPassword= hashedPass;
                 let ak = "4etw";
                 console.log(formDataObject);
                 
@@ -562,7 +562,7 @@ export default function LoginForm({checker , increment}) {
                                                 placeholder="Password"
                                                 onChange={valueOfStudentPassword}
                                                 id="studentPassword"
-                                                name="password"
+                                                name="userPassword"
                                                 className={`${Styles.sUpUserPassword} ${Styles.Login_input_tag}`}
                                                 required
                                             />
