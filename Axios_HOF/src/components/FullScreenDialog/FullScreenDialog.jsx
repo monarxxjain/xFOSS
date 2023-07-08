@@ -71,12 +71,13 @@ export default function FullScreenDialog() {
     };
 
     // localStorage.setItem("userInfo", JSON.stringify(obj));
-
+    const token = sessionStorage.getItem("JWT");
+    console.log(token);
 
     try{
       fetch("http://localhost:8080/post/info", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "Authorization": "Bearer "+token},
         body: JSON.stringify(obj)
       })
         .then(() => {

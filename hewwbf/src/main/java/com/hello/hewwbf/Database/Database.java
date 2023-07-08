@@ -14,4 +14,7 @@ public interface Database extends JpaRepository<UserData,Integer>{
     public List<UserData> getAll();
 
     public UserData findByUserId(int userId);
+
+    @Query(value = "select * from users where user_name=?1", nativeQuery = true)
+    public UserData findByUsername(String username);
 }

@@ -9,14 +9,14 @@ public class UserData {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int userId;
 
-    @Column
+    @Column(unique=true)
     private String userName;
 
     @Column
     private String emailId;
 
     @Column
-    private String password;
+    private String userPassword;
 
     @Column
     private String fav_animal;
@@ -32,7 +32,7 @@ public class UserData {
         this.userId = userId;
         this.userName = userName;
         this.emailId = emailId;
-        this.password = password;
+        this.userPassword = password;
         this.fav_animal = fav_animal;
         this.isLoggedInWhileSup = isLoggedInWhileSup;
     }
@@ -61,12 +61,12 @@ public class UserData {
         this.emailId = emailId;
     }
 
-    public String getPassword() {
-        return this.password;
+    public String getUserPassword() {
+        return this.userPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUserPassword(String password) {
+        this.userPassword = password;
     }
 
     public String getFav_animal() {

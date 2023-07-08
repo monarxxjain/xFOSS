@@ -1,5 +1,7 @@
 package com.hello.hewwbf.configuration;
 
+import java.net.http.HttpHeaders;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,10 +30,13 @@ public class SecurityConfigiration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http)
             throws Exception {
+                http.cors();
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request.requestMatchers("/authenticate","/get/users","/post/form")
-                        .permitAll().anyRequest().authenticated())
+                        .permitAll()
+                        .requestMatchers(org.springframework.http.HttpHeaders.ALLOW).permitAll()
+                        .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
                 .authenticationProvider(authenticationProvider())

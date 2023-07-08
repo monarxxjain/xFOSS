@@ -185,28 +185,36 @@ export default function LoginForm({checker , increment}) {
         let formDataObject = Object.fromEntries(formFields.entries());
 
         let userName = formDataObject.loggerName;
-        let password = formDataObject.loggerPass;
+        let userPassword = formDataObject.loggerPass;
 
         let adminName = formDataObject.loggerName;
         let adminPassword = formDataObject.loggerPass;
         // console.log(userName);
         // console.log(password);
 
+        const obj = {
+            userName,
+            userPassword
+        }
 
-        fetch(`http://localhost:8080/get/user/${userName}/${password}`,{
-            mode:"cors"
+        fetch(`http://localhost:8080/authenticate`,{
+            mode:"cors",
+            method:'POST',
+            headers: { "Content-Type": "application/json" },
+            body:JSON.stringify(obj)
         })
         .then((res)=>{
-            // console.log(res);
+            console.log(res);
             return res.json();
         })
         .then((data)=>{
-            // console.log(data)
-            if(data==true){
+            console.log(data)
+            if(data!=null){
                 const userData={
                     dashboardName: userName
+    
                 }
-               
+                sessionStorage.setItem("JWT",data.jwtToken)
                 console.log(checkerMj);
                 localStorage.setItem("userData", JSON.stringify(userData));
                 localStorage.setItem("loginMode", 1);
@@ -217,19 +225,24 @@ export default function LoginForm({checker , increment}) {
             }
             else{
                 // alert("User Do Not Exist");
-                fetch(`http://localhost:8080/get/admin/${adminName}/${adminPassword}`, {
-                    mode: "cors"
+                fetch(`http://localhost:8080/authenticate`, {
+                    mode: "cors",
+                    method: 'POST',
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(obj)
                 })
                     .then((response) => {
-                        // console.log(res);
+                        console.log("object")
+                        console.log(response);
                         return response.json();
                     })
                     .then((adData)=>{
                         console.log(adData)
-                        if(adData==true){
+                        if(adData!=null){
                             const adminData = {
                                 dashboardName: adminName
                             }
+                            sessionStorage.setItem("JWT", data.jwtToken)
                             localStorage.setItem("userData", JSON.stringify(adminData));
                             document.getElementById('jugaad2').click();   
                             localStorage.setItem("loginMode", 2);

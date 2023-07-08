@@ -20,8 +20,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
+// import com.hello.hewwbf.entity.JwtRequest;
 import com.hello.hewwbf.Model.AdminData;
 import com.hello.hewwbf.Model.AlumniData;
 import com.hello.hewwbf.Model.CalendarData;
@@ -30,10 +31,13 @@ import com.hello.hewwbf.Model.FAQData;
 import com.hello.hewwbf.Model.InfoData;
 import com.hello.hewwbf.Model.InfoScoreData;
 import com.hello.hewwbf.Model.UserData;
+import com.hello.hewwbf.Service.JwtService;
 import com.hello.hewwbf.Service.UserServiceImpl;
 import com.hello.hewwbf.entity.Alumni;
+import com.hello.hewwbf.entity.JwtRequest;
+import com.hello.hewwbf.entity.JwtResponse;
 
-@Controller
+@RestController
 @CrossOrigin
 public class Mycontroller {
 
@@ -68,17 +72,34 @@ public class Mycontroller {
         return this.userServiceImpl.getUserByName(userName);
     }
 
+    // @ResponseBody
+    // @GetMapping("/get/user/{userName}/{password}")
+    // public boolean getUserByName(@PathVariable String userName,@PathVariable String password){
+    //     System.out.println(userName + " " + password);
+    //     return this.userServiceImpl.getUserByNameSec(userName,password);
+    // }
     @ResponseBody
     @GetMapping("/get/user/{userName}/{password}")
     public boolean getUserByName(@PathVariable String userName,@PathVariable String password){
         System.out.println(userName + " " + password);
         return this.userServiceImpl.getUserByNameSec(userName,password);
     }
+
     // @ResponseBody
     // @GetMapping("/get/usersName")
     // public String getUsersNameDash(){
     //     return this.userServiceImpl.getDashName();
     // }
+
+
+
+    @Autowired
+    private JwtService jwtService;
+
+    @PostMapping({ "/authenticate" })
+    public JwtResponse createJwtToken(@RequestBody JwtRequest jwtRequest) throws Exception {
+        return jwtService.createJwtToken(jwtRequest);
+    }
 // ! <==============================End===========================================>
 
 

@@ -69,6 +69,8 @@ const App = () => {
     let data = localStorage.getItem("loginMode");
     setChecker(data);
   }
+
+  const newToken = sessionStorage.getItem("JWT")
   // const [isSidebar, setIsSidebar]=useState(true);
   // useEffect(()=>{
   //   Displayer(); 
@@ -110,8 +112,7 @@ const App = () => {
 
           {/* <Routes> */}
           <Route path="/dashboard" element={<>
-
-            <ColorModeContext.Provider value={colorMode} >
+            {newToken != null ? <ColorModeContext.Provider value={colorMode} >
               <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <div className="app">
@@ -121,7 +122,8 @@ const App = () => {
                   </main>
                 </div>
               </ThemeProvider>
-            </ColorModeContext.Provider>
+            </ColorModeContext.Provider> : <><><NavLatest /><Background /><LoginForm checker={checker} increment={handleCheckerIncrement} /></></>}
+            
           </>} />
           <Route path="/cp" element={<><ColorModeContext.Provider value={colorMode} >
             <ThemeProvider theme={theme}>

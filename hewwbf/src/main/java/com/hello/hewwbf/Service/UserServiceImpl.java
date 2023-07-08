@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserService {
             UserData user1 = this.dataBase.findByUserId(x.getUserId());
             if(user1!=null){
                 if(user1.getUserName().equals(userNewData.getUserName()) && user1.getFav_animal().equals(userNewData.getFav_animal()) ){
-                    user1.setPassword(userNewData.getPassword());
+                    user1.setUserPassword(userNewData.getUserPassword());
                     userNewData.setEmailId(user1.getEmailId());
                     userNewData.setUserId(user1.getUserId());
                     this.dataBase.save(userNewData);
@@ -113,7 +113,7 @@ public class UserServiceImpl implements UserService {
         List<UserData> list = this.dataBase.getAll();
         for (UserData user : list) {
             if (user.getUserName().equals(userName)) {
-                if (BCrypt.checkpw(password, user.getPassword())) {
+                if (BCrypt.checkpw(password, user.getUserPassword())) {
                     System.out.println("The password is a match!");
                     userPresent = true;
                     // yesLogggedIn(user);
