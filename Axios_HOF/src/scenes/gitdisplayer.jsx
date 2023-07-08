@@ -39,11 +39,13 @@ const gitfetchData = (username, githubContributionRepo, mlProjects, designProjec
       console.log(error);
     });
 };
+const token = sessionStorage.getItem("JWT");
 
 function gitDisplayer() {
   try {
     fetch(`http://localhost:8080/get/gitUserData`, {
-      mode: "cors"
+      mode: "cors",
+      headers: {"Authorization": "Bearer "+token}
     })
       .then((res) => {
         return res.json();
