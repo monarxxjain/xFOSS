@@ -24,6 +24,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfigiration {
     @Autowired
     private JwtRequestFilter jwtAuthenticationFilter;
+    
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -33,7 +34,7 @@ public class SecurityConfigiration {
                 http.cors();
         http
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(request -> request.requestMatchers("/authenticate","/get/users","/post/form")
+                .authorizeHttpRequests(request -> request.requestMatchers("/authenticate","/get/users","/post/form","/authenticateadmin","/post/formadmin","/get/alumni","/post/contact","/put/form")
                         .permitAll()
                         .requestMatchers(org.springframework.http.HttpHeaders.ALLOW).permitAll()
                         .anyRequest().authenticated())

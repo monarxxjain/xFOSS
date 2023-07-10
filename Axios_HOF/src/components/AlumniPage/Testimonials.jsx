@@ -25,6 +25,7 @@ const Testimonials = ({ feedback }) => {
       feedback=[...feedback, tempObj];
     }
   }
+  // const token = sessionStorage.getItem("JWT");
 
 
   useEffect(() => {
@@ -32,6 +33,7 @@ const Testimonials = ({ feedback }) => {
     try{
       fetch(`http://localhost:8080/get/alumni`, {
         mode: "cors"
+        // headers: { "Authorization": "Bearer " + token }
       })
         .then((res) => {
           // console.log(res);

@@ -46,6 +46,7 @@ const AlumniForm = ({ setFeedback, feedback }) => {
   };
 
 
+  const token = sessionStorage.getItem("JWT");
 
 
   const handleSubmit = (e) => {
@@ -56,7 +57,7 @@ const AlumniForm = ({ setFeedback, feedback }) => {
     console.log(formDataObject)
     fetch("http://localhost:8080/post/alumni", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
       body: JSON.stringify(formDataObject)
     })
       .then(() => {

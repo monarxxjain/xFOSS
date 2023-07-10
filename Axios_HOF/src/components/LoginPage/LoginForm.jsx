@@ -31,6 +31,8 @@ export default function LoginForm({checker , increment}) {
 
         setSnackOpen(false);
     };
+    const token = sessionStorage.getItem("JWT");
+
     const google_login = () => {
         const provider = new GoogleAuthProvider();
         const auth = getAuth();
@@ -196,6 +198,7 @@ export default function LoginForm({checker , increment}) {
             userName,
             userPassword
         }
+        console.log(obj);
 
         fetch(`http://localhost:8080/authenticate`,{
             mode:"cors",
@@ -209,7 +212,7 @@ export default function LoginForm({checker , increment}) {
         })
         .then((data)=>{
             console.log(data)
-            if(data!=null){
+            if(data.user!=null){
                 const userData={
                     dashboardName: userName
     
@@ -223,26 +226,27 @@ export default function LoginForm({checker , increment}) {
                 console.log(checkerMj);
                 document.getElementById('autoclick').click();   
             }
-            else{
+            else {
+                console.log("Checking for Admin");
                 // alert("User Do Not Exist");
-                fetch(`http://localhost:8080/authenticate`, {
+                fetch(`http://localhost:8080/authenticateadmin`, {
                     mode: "cors",
                     method: 'POST',
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(obj)
                 })
                     .then((response) => {
-                        console.log("object")
                         console.log(response);
                         return response.json();
                     })
                     .then((adData)=>{
-                        console.log(adData)
-                        if(adData!=null){
+                        console.log(adData);
+                        if(adData.user!=null){
                             const adminData = {
                                 dashboardName: adminName
                             }
-                            sessionStorage.setItem("JWT", data.jwtToken)
+                            console.log("Krishna sexy")
+                            sessionStorage.setItem("JWT", adData.jwtToken)
                             localStorage.setItem("userData", JSON.stringify(adminData));
                             document.getElementById('jugaad2').click();   
                             localStorage.setItem("loginMode", 2);

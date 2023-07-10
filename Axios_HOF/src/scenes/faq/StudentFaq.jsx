@@ -11,12 +11,14 @@ import { tokens } from "../../theme";
 const StudentFAQ = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
-   
+    const token = sessionStorage.getItem("JWT");
+
     const [acc, setAcc] = useState([]);
     useEffect(() => {
 
         fetch(`http://localhost:8080/get/faqs`, {
-            mode: "cors"
+            mode: "cors",
+            headers: { "Authorization": "Bearer " + token }
         })
             .then((res) => {
                 return res.json();

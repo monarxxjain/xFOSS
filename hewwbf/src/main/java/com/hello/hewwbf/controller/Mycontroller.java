@@ -36,6 +36,7 @@ import com.hello.hewwbf.Service.UserServiceImpl;
 import com.hello.hewwbf.entity.Alumni;
 import com.hello.hewwbf.entity.JwtRequest;
 import com.hello.hewwbf.entity.JwtResponse;
+import com.hello.hewwbf.entity.JwtResponseAd;
 
 @RestController
 @CrossOrigin
@@ -99,6 +100,14 @@ public class Mycontroller {
     @PostMapping({ "/authenticate" })
     public JwtResponse createJwtToken(@RequestBody JwtRequest jwtRequest) throws Exception {
         return jwtService.createJwtToken(jwtRequest);
+    }
+
+    
+    @PostMapping({ "/authenticateadmin" })
+    public JwtResponseAd createJwtTokenForAdmin(@RequestBody JwtRequest jwtRequest) throws Exception {
+        System.out.println();
+
+        return jwtService.createJwtTokenForAdmin(jwtRequest);
     }
 // ! <==============================End===========================================>
 

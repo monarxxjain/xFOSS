@@ -24,6 +24,7 @@ const Calendare = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [currentEvents, setCurrentEvents] = useState([]);
+  const token = sessionStorage.getItem("JWT");
 
   const handleDateClick = (selected) => {
     const title = prompt("Please enter a new title for your event");
@@ -48,7 +49,7 @@ const Calendare = () => {
 
     fetch("http://localhost:8080/post/calendar", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
       body: JSON.stringify(obj)
     })
       .then(() => {
@@ -102,7 +103,7 @@ const Calendare = () => {
       try {
         fetch("http://localhost:8080/del/calendar", {
           method: "DELETE",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
           body: timeDate
         })
           .then(() => {

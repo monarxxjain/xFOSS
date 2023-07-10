@@ -34,6 +34,7 @@ export default function ForgotPass() {
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
 
+    // const token = sessionStorage.getItem("JWT");
 
 
     const resetPassWord = async (e) => {
@@ -56,7 +57,7 @@ export default function ForgotPass() {
 
                 fetch("http://localhost:8080/put/form", {
                     method: "PUT",
-                    headers: { "Content-Type": "application/json" },
+                    headers: { "Content-Type": "application/json"},
                     body: JSON.stringify(formDataObject)
                 })
                     .then(() => {

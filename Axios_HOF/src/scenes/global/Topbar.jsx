@@ -18,6 +18,7 @@ const Topbar = () => {
   const colorMode = useContext(ColorModeContext);
   const logouter =()=>{
     localStorage.setItem("loginMode", 0);
+    sessionStorage.clear();
   }
   return (
     <Box display="flex" justifyContent="space-between" p={2}>

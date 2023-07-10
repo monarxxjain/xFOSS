@@ -64,6 +64,7 @@ const Blockchain = () => {
     window.location.reload();
 
   };
+  const token = sessionStorage.getItem("JWT");
 
   const handleYes = async () => {
 
@@ -75,7 +76,7 @@ const Blockchain = () => {
 
     fetch("http://localhost:8080/put/bcscore", {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
       body: JSON.stringify(nameScore)
     })
       .then(() => {

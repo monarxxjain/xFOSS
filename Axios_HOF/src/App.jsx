@@ -112,7 +112,7 @@ const App = () => {
 
           {/* <Routes> */}
           <Route path="/dashboard" element={<>
-            {newToken != null ? <ColorModeContext.Provider value={colorMode} >
+            {data != 0 ? <ColorModeContext.Provider value={colorMode} >
               <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <div className="app">

@@ -14,6 +14,7 @@ function ContactUs() {
         s1.setAttribute('crossorigin', '*');
         s0.parentNode.insertBefore(s1, s0);
     })();
+    // const token = sessionStorage.getItem("JWT");
 
     const submitContactform = (e) => {
         try{
@@ -23,7 +24,7 @@ function ContactUs() {
             let formDataObject = Object.fromEntries(formFields.entries());
             fetch("http://localhost:8080/post/contact", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json"},
                 body: JSON.stringify(formDataObject)
             })
             .then(() => {

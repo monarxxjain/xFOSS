@@ -24,6 +24,7 @@ const fetchData = (username) => {
     });
 };
 const token = sessionStorage.getItem("JWT");
+console.log(token)
 
 function Displayer() {
   try{
