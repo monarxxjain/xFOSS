@@ -129,7 +129,7 @@ export default function LoginForm({checker , increment}) {
                 let pas = adformDataObject.adminPassword;
                 let aid = adformDataObject.adminID;
                 let r1 = /[^a-zA-Z\s]/;
-                let r2 = /^[a-zA-Z]+@iiitl\.ac\.in$/;
+                let r2 = /^[a-zA-Z0-9]+@iiitl\.ac\.in$/;
                 let r3 = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z0-9]).{8,}$/;
                 let r4 = /^[a-zA-Z]+@iiitl$/;
                 if (r1.test(name)){
