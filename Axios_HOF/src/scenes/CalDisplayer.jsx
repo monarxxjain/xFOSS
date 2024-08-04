@@ -1,9 +1,14 @@
 import React from "react";
 let initEvents = [];
 const CalDisplayer = ()=>{
+
+    const token = sessionStorage.getItem("JWT");
+
+
     const fetchData = async () => {
         await fetch(`http://localhost:8080/get/calendar`, {
-            mode: "cors"
+            mode: "cors",
+            headers: { "Authorization": "Bearer " + token }
         })
             .then((res) => {
                 return res.json();

@@ -4,10 +4,12 @@ import {pattern2, pattern3,shadow1,shadow2} from "../../assets/index";
 import './Users.css'
 export default function Users() {
 
+    const token = sessionStorage.getItem("JWT");
 
     const fetchData = () => {
         const users = fetch("http://localhost:8080/get/users",{
-            mode:"cors"
+            mode:"cors",
+            headers: { "Authorization": "Bearer " + token }
         })
         users
             .then((res) => {

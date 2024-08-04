@@ -23,10 +23,14 @@ const fetchData = (username) => {
       console.log("error");
     });
 };
+const token = sessionStorage.getItem("JWT");
+console.log(token)
+
 function Displayer() {
   try{
     fetch(`http://localhost:8080/get/cfUserName`, {
-      mode: "cors"
+      mode: "cors",
+      headers: {"Authorization": "Bearer "+token}
     })
     .then((res)=>{  
       return res.json();

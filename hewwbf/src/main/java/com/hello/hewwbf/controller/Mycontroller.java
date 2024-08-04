@@ -14,14 +14,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
+// import com.hello.hewwbf.entity.JwtRequest;
 import com.hello.hewwbf.Model.AdminData;
 import com.hello.hewwbf.Model.AlumniData;
 import com.hello.hewwbf.Model.CalendarData;
@@ -30,9 +32,14 @@ import com.hello.hewwbf.Model.FAQData;
 import com.hello.hewwbf.Model.InfoData;
 import com.hello.hewwbf.Model.InfoScoreData;
 import com.hello.hewwbf.Model.UserData;
+import com.hello.hewwbf.Service.JwtService;
 import com.hello.hewwbf.Service.UserServiceImpl;
+import com.hello.hewwbf.entity.Alumni;
+import com.hello.hewwbf.entity.JwtRequest;
+import com.hello.hewwbf.entity.JwtResponse;
+import com.hello.hewwbf.entity.JwtResponseAd;
 
-@Controller
+@RestController
 @CrossOrigin
 public class Mycontroller {
 
@@ -67,17 +74,42 @@ public class Mycontroller {
         return this.userServiceImpl.getUserByName(userName);
     }
 
+    // @ResponseBody
+    // @GetMapping("/get/user/{userName}/{password}")
+    // public boolean getUserByName(@PathVariable String userName,@PathVariable String password){
+    //     System.out.println(userName + " " + password);
+    //     return this.userServiceImpl.getUserByNameSec(userName,password);
+    // }
     @ResponseBody
     @GetMapping("/get/user/{userName}/{password}")
     public boolean getUserByName(@PathVariable String userName,@PathVariable String password){
         System.out.println(userName + " " + password);
         return this.userServiceImpl.getUserByNameSec(userName,password);
     }
+
     // @ResponseBody
     // @GetMapping("/get/usersName")
     // public String getUsersNameDash(){
     //     return this.userServiceImpl.getDashName();
     // }
+
+
+
+    @Autowired
+    private JwtService jwtService;
+
+    @PostMapping({ "/authenticate" })
+    public JwtResponse createJwtToken(@RequestBody JwtRequest jwtRequest) throws Exception {
+        return jwtService.createJwtToken(jwtRequest);
+    }
+
+    
+    @PostMapping({ "/authenticateadmin" })
+    public JwtResponseAd createJwtTokenForAdmin(@RequestBody JwtRequest jwtRequest) throws Exception {
+        System.out.println();
+
+        return jwtService.createJwtTokenForAdmin(jwtRequest);
+    }
 // ! <==============================End===========================================>
 
 
@@ -288,10 +320,25 @@ public class Mycontroller {
     
 // ! <================================DashBoard End=========================================>
 
+    @ResponseBody
+    @PostMapping("/post/alumni")
+    public void postAlumni(@RequestBody Alumni alumni){
+        // System.out.println(alumni);
+        this.userServiceImpl.uploadAlumni(alumni);
+    }
+    @ResponseBody
+    @GetMapping("/get/alumni")
+    public List<Alumni> getAlumniData(){
+        // System.out.println(alumni);
+        return this.userServiceImpl.getAlumni();
+    }
+
+
     // @ResponseBody
-    // @PostMapping("/post/alumni")
-    // public void postAlumni(@RequestBody AlumniData alumniData){
-    //     this.userServiceImpl.postAlumniForm(alumniData);
+    // @PostMapping("/post/alumniImage")
+    // public void postAlumniImage(@RequestParam("alumniPic")MultipartFile file)throws IOException{
+
+    //     this.userServiceImpl.uploadImage(file);
     // }
     // @ResponseBody
     // @GetMapping("/get/alumni")

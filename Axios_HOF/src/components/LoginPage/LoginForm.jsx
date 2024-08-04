@@ -16,11 +16,22 @@ import { motion } from "framer-motion";
 import FullScreenDialog from "../FullScreenDialog/FullScreenDialog";
 import bcrypt from "bcryptjs-react"
 // import { GoogleAuthProvider } from "firebase/auth";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 let checkerMj = 0;
-
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 export default function LoginForm({checker , increment}) {
     const [userid, setuserid] = useState("");
+    const [snackOpen, setSnackOpen] = React.useState(false);
+    const handleSnackClose = (event, reason) => {
+        
+
+        setSnackOpen(false);
+    };
+    const token = sessionStorage.getItem("JWT");
 
     const google_login = () => {
         const provider = new GoogleAuthProvider();
@@ -63,12 +74,12 @@ export default function LoginForm({checker , increment}) {
 
 
     const submitform = async (e) => {
+        e.preventDefault();
         if (
             submitStudentName === false ||
             submitStudentEmail === false ||
             submitStudentPass === false
             ) {
-                e.preventDefault();
             console.log("Invalid Info");
         } else {
             let form = e.currentTarget;
@@ -77,10 +88,10 @@ export default function LoginForm({checker , increment}) {
                 let formFields = new FormData(form);
                 let formDataObject = Object.fromEntries(formFields.entries());
 
-                const hashedPass = bcrypt.hashSync(formDataObject.password, 10);
+                const hashedPass = bcrypt.hashSync(formDataObject.userPassword, 10);
                 // console.log(hashedPass)
-                formDataObject.password= hashedPass;
-                
+                formDataObject.userPassword= hashedPass;
+                let ak = "4etw";
                 console.log(formDataObject);
                 
                 fetch("http://localhost:8080/post/form",{
@@ -91,7 +102,10 @@ export default function LoginForm({checker , increment}) {
                 .then(()=>{
                     console.log("New Student Added")
                 })
-                
+                setSnackOpen(true);
+                setTimeout(() => {
+                    window.location.reload();
+                }, 500);
 
             } 
             catch (error) {
@@ -101,6 +115,7 @@ export default function LoginForm({checker , increment}) {
         }
     };
     const submitAdminform = async (e) => {
+        e.preventDefault()
             let adform = e.currentTarget;
 
             let url = adform.action;
@@ -114,7 +129,7 @@ export default function LoginForm({checker , increment}) {
                 let pas = adformDataObject.adminPassword;
                 let aid = adformDataObject.adminID;
                 let r1 = /[^a-zA-Z\s]/;
-                let r2 = /^[a-zA-Z]+@iiitl\.ac\.in$/;
+                let r2 = /^[a-zA-Z0-9]+@iiitl\.ac\.in$/;
                 let r3 = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z0-9]).{8,}$/;
                 let r4 = /^[a-zA-Z]+@iiitl$/;
                 if (r1.test(name)){
@@ -149,6 +164,10 @@ export default function LoginForm({checker , increment}) {
                     .then(()=>{
                         console.log("New Admin Added")
                     })
+                    setSnackOpen(true);
+                setTimeout(() => {
+                    window.location.reload();
+                }, 500);
                 }
 
 
@@ -168,52 +187,70 @@ export default function LoginForm({checker , increment}) {
         let formDataObject = Object.fromEntries(formFields.entries());
 
         let userName = formDataObject.loggerName;
-        let password = formDataObject.loggerPass;
+        let userPassword = formDataObject.loggerPass;
 
         let adminName = formDataObject.loggerName;
         let adminPassword = formDataObject.loggerPass;
         // console.log(userName);
         // console.log(password);
 
+        const obj = {
+            userName,
+            userPassword
+        }
+        console.log(obj);
 
-        fetch(`http://localhost:8080/get/user/${userName}/${password}`,{
-            mode:"cors"
+        fetch(`http://localhost:8080/authenticate`,{
+            mode:"cors",
+            method:'POST',
+            headers: { "Content-Type": "application/json" },
+            body:JSON.stringify(obj)
         })
         .then((res)=>{
-            // console.log(res);
+            console.log(res);
             return res.json();
         })
         .then((data)=>{
-            // console.log(data)
-            if(data==true){
+            console.log(data)
+            if(data.user!=null){
                 const userData={
                     dashboardName: userName
+    
                 }
+                sessionStorage.setItem("JWT",data.jwtToken)
                 console.log(checkerMj);
                 localStorage.setItem("userData", JSON.stringify(userData));
+                localStorage.setItem("loginMode", 1);
                 checkerMj++;
                 increment();
                 console.log(checkerMj);
                 document.getElementById('autoclick').click();   
             }
-            else{
+            else {
+                console.log("Checking for Admin");
                 // alert("User Do Not Exist");
-                fetch(`http://localhost:8080/get/admin/${adminName}/${adminPassword}`, {
-                    mode: "cors"
+                fetch(`http://localhost:8080/authenticateadmin`, {
+                    mode: "cors",
+                    method: 'POST',
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(obj)
                 })
                     .then((response) => {
-                        // console.log(res);
+                        console.log(response);
                         return response.json();
                     })
                     .then((adData)=>{
-                        console.log(adData)
-                        if(adData==true){
+                        console.log(adData);
+                        if(adData.user!=null){
                             const adminData = {
                                 dashboardName: adminName
                             }
+                            console.log("Krishna sexy")
+                            sessionStorage.setItem("JWT", adData.jwtToken)
                             localStorage.setItem("userData", JSON.stringify(adminData));
                             document.getElementById('jugaad2').click();   
-                           
+                            localStorage.setItem("loginMode", 2);
+
                         }
                         else{
                             alert("User do not exist");
@@ -363,6 +400,9 @@ export default function LoginForm({checker , increment}) {
 
     };
 
+
+    const horizontal = "center";
+    const vertical = "bottom";
     return (
         <motion.div
             initial={{ opacity: 0, x: "1000px", y: "-470px" }}
@@ -539,7 +579,7 @@ export default function LoginForm({checker , increment}) {
                                                 placeholder="Password"
                                                 onChange={valueOfStudentPassword}
                                                 id="studentPassword"
-                                                name="password"
+                                                name="userPassword"
                                                 className={`${Styles.sUpUserPassword} ${Styles.Login_input_tag}`}
                                                 required
                                             />
@@ -701,6 +741,11 @@ export default function LoginForm({checker , increment}) {
                     </div>
                 </div>
             </div>
+            <Snackbar open={snackOpen} autoHideDuration={6000} onClose={handleSnackClose} anchorOrigin={{vertical, horizontal}}>
+                <Alert onClose={handleSnackClose} severity="success" sx={{ width: '100%' }}>
+                    Form Submitted Successfully!
+                </Alert>
+            </Snackbar>
         </motion.div>
     );
 }

@@ -26,10 +26,13 @@ const FAQ = () => {
   const [ques, setQues] = useState("");
   const [ans, setAns] = useState("");
   const [acc, setAcc] = useState([]);
+  const token = sessionStorage.getItem("JWT");
+
   useEffect(() => {
 
     fetch(`http://localhost:8080/get/faqs`, {
-      mode: "cors"
+      mode: "cors",
+      headers: { "Authorization": "Bearer " + token }
     })
       .then((res) => {
         return res.json();
@@ -86,7 +89,7 @@ const FAQ = () => {
     setOpenSnack(true)
     fetch("http://localhost:8080/post/faq", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
       body: JSON.stringify(faqData)
     })
       .then(() => {

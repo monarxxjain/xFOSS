@@ -9,13 +9,17 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import LogoutIcon from '@mui/icons-material/Logout';
+import HomeIcon from '@mui/icons-material/Home';
 import { Link } from "react-router-dom";
 
 const Topbar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
-
+  const logouter =()=>{
+    localStorage.setItem("loginMode", 0);
+    sessionStorage.clear();
+  }
   return (
     <Box display="flex" justifyContent="space-between" p={2}>
       {/* SEARCH BAR */}
@@ -43,11 +47,12 @@ const Topbar = () => {
           <NotificationsOutlinedIcon />
         </IconButton>
         <IconButton>
-          <SettingsOutlinedIcon />
+          {/* <SettingsOutlinedIcon /> */}
+          <Link to="/"><HomeIcon /></Link>
         </IconButton>
         <IconButton>
           {/* <PersonOutlinedIcon /> */}
-          <Link to="/">
+          <Link to="/" onClick={logouter}>
             <LogoutIcon/>
           </Link>
         </IconButton>

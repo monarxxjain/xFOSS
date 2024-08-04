@@ -4,6 +4,7 @@ import FullCalendar, { formatDate } from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import emailjs from "@emailjs/browser"
 import listPlugin from "@fullcalendar/list";
 import { useEffect, useState } from "react";
 import {
@@ -23,11 +24,13 @@ const Calendare = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [currentEvents, setCurrentEvents] = useState([]);
+  const token = sessionStorage.getItem("JWT");
 
   const handleDateClick = (selected) => {
     const title = prompt("Please enter a new title for your event");
     const calendarApi = selected.view.calendar;
     // console.log(selected.endStr);
+    sendEmail({});
     // console.log(selected.endStr.slice(0, 19));
     let dater1 = selected.endStr.slice(0, 19);
     // console.log(dater1)
@@ -41,13 +44,20 @@ const Calendare = () => {
       title: title
     }
     try{
+
+      
+
     fetch("http://localhost:8080/post/calendar", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
       body: JSON.stringify(obj)
     })
       .then(() => {
         console.log("Class Scheduled")
+
+        // email to be sent here
+        
+        
       })
     }
     catch(err){
@@ -93,7 +103,7 @@ const Calendare = () => {
       try {
         fetch("http://localhost:8080/del/calendar", {
           method: "DELETE",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
           body: timeDate
         })
           .then(() => {
@@ -107,11 +117,40 @@ const Calendare = () => {
       
     }
   };
+  
+  const sendEmail = (data) =>{
+
+    console.log("email send calleds")
+    
+    const serviceID= "service_toeim6j";
+    const templateID="template_bwqmdcu";
+    const fakeData = {
+      name: "rahi durge"
+    };
+    emailjs.send(serviceID,templateID, fakeData)
+    .then(
+      res =>{
+        console.log(res);
+        alert("your message has been sent");
+      })
+        .catch((err) => {
+          console.log("error has occurred in calling");
+          console.error(err);
+        });
+    }
+      
+    
 
 
 
   return (
     <Box m="20px">
+      <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+      </script>
+            {(function(){
+                emailjs.init("hcWZbjJ31Qeml9uCJ");
+            })()};
       <Header title="Calendar" subtitle="Full Calendar Interactive Page" />
 
       <Box display="flex" justifyContent="space-between">

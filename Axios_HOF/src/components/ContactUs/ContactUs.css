@@ -205,10 +205,11 @@
     border-bottom-left-radius: 40px;
   }
   .contact_us_6{
-    background-color: #0f1729;
+    /* background-color: #0f1729; */
     /* background-color: #071f30; */
-    height: 100vh;
-    /* margin-top: 50px; */
+    /* background-color: black; */
+    height: 100vmin;
+    margin-top: 50px;
     display: flex;
   }
   

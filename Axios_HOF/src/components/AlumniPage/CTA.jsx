@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import styles from '../../style';
 import { people02 } from '../../assets';
-import {defaultPic} from '../../assets/index'
+import { defaultPic } from '../../assets/index'
 export let alumAdd;
+import axios from 'axios';
 const AlumniForm = ({ setFeedback, feedback }) => {
   const [name, setName] = useState('');
   const [gradYear, setGradYear] = useState('');
@@ -29,151 +30,136 @@ const AlumniForm = ({ setFeedback, feedback }) => {
 
   const handleAchievementChange = (event) => {
     setSentences(event.target.value);
-    // const sentences = achievements.split(".");
-    // console.log(sentences);
+
   };
 
 
   const handlePhotoChange = (event) => {
     const image = event.target.files[0];
     const reader = new FileReader();
-    reader.onload = () =>{
+    reader.onload = () => {
       const imgUrl = reader.result;
       setPhoto(imgUrl)
     }
     reader.readAsDataURL(image);
-    
     setPhoto(event.target.files[0]);
-    // console.log("HiHello")
-    // console.log(typeof(event.target.value));
   };
 
 
+  const token = sessionStorage.getItem("JWT");
+
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // const achievements = sentences.split(".");
     let form = e.currentTarget;
     let formFields = new FormData(form);
     let formDataObject = Object.fromEntries(formFields.entries());
+    formDataObject.alumniPic=photo;
     console.log(formDataObject)
-    let image = formDataObject.alumniPic.name;
-    formDataObject.alumniPic= image;
     fetch("http://localhost:8080/post/alumni", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
       body: JSON.stringify(formDataObject)
     })
       .then(() => {
         console.log("Message Sent")
       })
-    // setFeedback([...feedback, {
-    //   id: "feedback-7",
-    //   graduationYear: "Graduation Year : 2026",
-    //   ach: "Achievements : ",
-    //   achievements: ["Opened a 50M$ startup Company", "Big contribution in Machine Learning department"],
-    //   name: "rre  ",
-    //   title: "Founder & Leader",
-    //   img: people02,
-    // },]);
+
     setPhoto(defaultPic);
     setName('');
     setEmail('');
     setGradYear('');
     setCurPos('');
     setSentences('');
-    e.preventDefault();
   };
-  // console.log(addAlumni);
   return (
-    <form onSubmit={(e)=>{handleSubmit(e)}} className={`${styles.flexStartLeft} flex-col p-20 py-20 max-w-xl border-y-2 bg-gray-900 border-white-700 rounded-3xl`}
-          id='alumniForm'
-    >
-
-      <label htmlFor="picture">
-        <img src={photo}
-          alt="Upload"
-          height="100px"
-          width="100px"
-          className='cursor-pointer rounded-full hover:scale-125 ease-in-out duration-200 hover:transform-gpu'
+   
+      <form onSubmit={(e) => { handleSubmit(e) }} className={`${styles.flexStartLeft} flex-col p-20 py-20 max-w-xl border-y-2 bg-gray-900 border-white-700 rounded-3xl`}
+        id='alumniForm'
+      >
+        <label htmlFor="picture">
+          <img src={photo}
+            alt="Upload"
+            height="100px"
+            width="100px"
+            className='cursor-pointer rounded-full hover:scale-125 ease-in-out duration-200 hover:transform-gpu'
+          />
+        </label>
+        <input
+          id="picture"
+          name='alumniPic'
+          type="file"
+          accept="image/*"
+          onChange={handlePhotoChange}
+          className="rounded-lg border-white text-black hidden"
+          required
         />
-      </label>
-      <input
-        id="picture"
-        name='alumniPic'
-        type="file"
-        accept="image/*"
-        onChange={handlePhotoChange}
-        className="rounded-lg border-white text-black hidden"
-        required
-      />
-      <br />
-      <label htmlFor="name" className="font-poppins font-semibold text-white text-xl">
-        Name:
-      </label>
-      <input
-        id="name"
-        name='alumniName'
-        type="text"
-        value={name}
-        onChange={handleNameChange}
-        className="mt-2 py-1 px-4 rounded-lg border-2 border-white bg-white w-full text-black"
-        required
-      />
-      <br />
-      <label htmlFor="email" className="font-poppins font-semibold text-white text-xl ">
-        Email:
-      </label>
-      <input
-        id="email"
-        name='alumniEmail'
-        type="email"
-        value={email}
-        onChange={handleEmailChange}
-        className="mt-2 py-1 px-4 rounded-lg border-2 border-white bg-white w-full text-black"
-        required
-      /><br />
-      <label htmlFor="gradYear" className="font-poppins font-semibold text-white text-xl ">
-        Graduation Year:
-      </label>
-      <input
-        id="gradYear"
-        name='alumniGradYear'
-        type="number"
-        value={gradYear}
-        onChange={handleGradYearChange}
-        className="mt-2 mb-6 py-1 px-4 rounded-lg border-2 border-white bg-white w-full text-black"
-        required
-      />
-      <label htmlFor="currentPos" className="font-poppins font-semibold text-white text-xl ">
-        Current Position:
-      </label>
-      <input
-        id="currentPos"
-        name='alumniPosition'
-        type="text"
-        value={curPos}
-        onChange={handleCurPosChange}
-        className="mt-2 mb-6 py-1 px-4 rounded-lg border-2 border-white bg-white w-full text-black"
-        required
-      />
+        <br />
+        <label htmlFor="name" className="font-poppins font-semibold text-white text-xl">
+          Name:
+        </label>
+        <input
+          id="name"
+          name='alumniName'
+          type="text"
+          value={name}
+          onChange={handleNameChange}
+          className="mt-2 py-1 px-4 rounded-lg border-2 border-white bg-white w-full text-black"
+          required
+        />
+        <br />
+        <label htmlFor="email" className="font-poppins font-semibold text-white text-xl ">
+          Email:
+        </label>
+        <input
+          id="email"
+          name='alumniEmail'
+          type="email"
+          value={email}
+          onChange={handleEmailChange}
+          className="mt-2 py-1 px-4 rounded-lg border-2 border-white bg-white w-full text-black"
+          required
+        /><br />
+        <label htmlFor="gradYear" className="font-poppins font-semibold text-white text-xl ">
+          Graduation Year:
+        </label>
+        <input
+          id="gradYear"
+          name='alumniGradYear'
+          type="number"
+          value={gradYear}
+          onChange={handleGradYearChange}
+          className="mt-2 mb-6 py-1 px-4 rounded-lg border-2 border-white bg-white w-full text-black"
+          required
+        />
+        <label htmlFor="currentPos" className="font-poppins font-semibold text-white text-xl ">
+          Current Position:
+        </label>
+        <input
+          id="currentPos"
+          name='alumniPosition'
+          type="text"
+          value={curPos}
+          onChange={handleCurPosChange}
+          className="mt-2 mb-6 py-1 px-4 rounded-lg border-2 border-white bg-white w-full text-black"
+          required
+        />
 
-      <label htmlFor="gradYear" className="font-poppins font-semibold text-white text-xl mt-4">
-        Achievements:
-      </label>
-      <input
-        id="achievements"
-        name='alumniAch'
-        type="text"
-        value={sentences}
-        onChange={handleAchievementChange}
-        className="mt-2 mb-12 py-1 px-4 rounded-lg border-2 border-white bg-white w-full text-black"
-        required
-      />
-      <input type="submit" value="Submit" form='alumniForm'
-        className="mt-4 py-2 px-4 rounded-lg w-1/6 bg-white text-black font-semibold 
+        <label htmlFor="gradYear" className="font-poppins font-semibold text-white text-xl mt-4">
+          Achievements:
+        </label>
+        <input
+          id="achievements"
+          name='alumniAch'
+          type="text"
+          value={sentences}
+          onChange={handleAchievementChange}
+          className="mt-2 mb-12 py-1 px-4 rounded-lg border-2 border-white bg-white w-full text-black"
+          required
+        />
+        <input type="submit" value="Submit" form='alumniForm'
+          className="mt-4 py-2 px-4 rounded-lg w-1/6 bg-white text-black font-semibold 
       hover:bg-gray-700 hover:text-white hover:scale-105 ease-in-out duration-200"/>
-    </form>
+      </form>
   );
 };
 
@@ -183,9 +169,10 @@ const AlumniSection = ({ setFeedback, feedback }) => {
   const handleButtonClick = () => {
     setShowForm(true);
   };
+  let data = localStorage.getItem("loginMode");
 
   return (
-    <>
+    <div style={{display: (data!=2) ? "none" : "block"}}>
       <section
         className={`${styles.flexCenter} ${styles.marginY} ${styles.padding} sm:flex-row flex-col bg-black-gradient-2 rounded-[20px] box-shadow`}
       >
@@ -197,9 +184,6 @@ const AlumniSection = ({ setFeedback, feedback }) => {
         </div>
 
         <div className={`${styles.flexCenter} sm:ml-10 ml-0 sm:mt-0 mt-10`}>
-          {/* {showForm ? (
-          <AlumniForm />
-        ) : ( */}
           <button
             onClick={handleButtonClick}
             className="py-2 px-4 rounded-lg bg-white text-black font-semibold"
@@ -214,7 +198,7 @@ const AlumniSection = ({ setFeedback, feedback }) => {
         ) : (<div className={`${styles.paragraph} max-w-[490px]`}>Register as Alumni</div>)}
 
       </section>
-    </>
+    </div>
   );
 };
 

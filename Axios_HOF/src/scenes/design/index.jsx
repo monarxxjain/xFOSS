@@ -63,6 +63,7 @@ const Design = () => {
     window.location.reload();
 
   };
+  const token = sessionStorage.getItem("JWT");
 
   const handleYes = async () => {
 
@@ -74,7 +75,7 @@ const Design = () => {
 
     fetch("http://localhost:8080/put/designscore", {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
       body: JSON.stringify(nameScore)
     })
       .then(() => {
