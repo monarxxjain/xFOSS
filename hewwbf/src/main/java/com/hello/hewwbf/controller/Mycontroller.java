@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 // import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+// PR check
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -47,8 +48,8 @@ public class Mycontroller {
 
 
 // ! <================================Start=========================================>
-    // ** User Form **
-    @ResponseBody
+    // ** User Form **   
+        @ResponseBody
     @PostMapping("/post/form")
     public void postForm(@RequestBody UserData userData){
         this.userServiceImpl.postData(userData);
